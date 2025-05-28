@@ -3,19 +3,14 @@ package com.d3vlin13.amazonviewer.model;
 import java.util.ArrayList;
 
 public class Serie extends Film  {
-	
 	private int id;
 	private int sessionQuantity;
 	private ArrayList<Chapter> chapters;
-	
 
 	public Serie(String title, String genre, String creator, int duration, int sessionQuantity) {
 		super(title, genre, creator, duration);
-		// TODO Auto-generated constructor stub
 		this.sessionQuantity = sessionQuantity;
 	}
-	
-	
 
 	public int getId() {
 		return id;
@@ -39,7 +34,6 @@ public class Serie extends Film  {
 	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return  "\n :: SERIE ::" + 
 				"\n Title: " + getTitle() +
 				"\n Genero: " + getGenre() + 
@@ -61,12 +55,8 @@ public class Serie extends Film  {
 		return series;
 	}
 
-
-
 	@Override
 	public void view() {
-		// TODO Auto-generated method stub
-		
+		setViewed(true);
 	}
-	
 }

@@ -9,14 +9,12 @@ public class Chapter extends Movie {
 
 	public Chapter(String title, String genre, String creator, int duration, short year, int sessionNumber, Serie serie) {
 		super(title, genre, creator, duration, year);
-		// TODO Auto-generated constructor stub
 		this.setSessionNumber(sessionNumber);
 		this.setSerie(serie);
 	}
 	
 	@Override
 	public int getId() {
-		// TODO Auto-generated method stub
 		return this.id;
 	}
 
@@ -38,7 +36,6 @@ public class Chapter extends Movie {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return  "\n :: SERIE ::" + 
 				"\n Title: " + getSerie().getTitle() +
 				"\n :: CHAPTER ::" + 
@@ -70,14 +67,7 @@ public class Chapter extends Movie {
 		}
 
 		if (chapterViewedCounter == chapters.size()) {
-			getSerie().setViewed(true);
+			getSerie().view();
 		}
 	}
 }
-
-
-
-
-
-
-
