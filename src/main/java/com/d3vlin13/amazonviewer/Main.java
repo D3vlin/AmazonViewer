@@ -8,6 +8,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * <h1>AmazonViewer</h1>
+ * AmazonViewer is a program that lets you to watch movies, TV series with episodes,
+ * books, and magazines. It also allows you to generate general reports with the date and time.
+ * <p>There are some rules such as all items can be viewed or read except for magazines,
+ * which can only be viewed as a display without being read.</p>
+ *
+ * @author D3vlin13
+ * @version 1.1
+ * @since 2025
+ */
 public class Main {
     static ArrayList<Book> books= Book.makeBookList();
     static ArrayList<Movie> movies = Movie.makeMoviesList();

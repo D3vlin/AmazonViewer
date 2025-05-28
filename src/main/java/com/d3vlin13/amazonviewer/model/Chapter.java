@@ -2,6 +2,10 @@ package com.d3vlin13.amazonviewer.model;
 
 import java.util.ArrayList;
 
+/**
+ * Inherits from {@link Movie}
+ * @see Film
+ */
 public class Chapter extends Movie {
 	private int id;
 	private int sessionNumber;
