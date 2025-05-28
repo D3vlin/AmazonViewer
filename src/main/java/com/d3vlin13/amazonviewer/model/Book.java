@@ -1,5 +1,7 @@
 package com.d3vlin13.amazonviewer.model;
 
+import com.d3vlin13.amazonviewer.util.AmazonUtil;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -8,10 +10,12 @@ public class Book extends Publication implements IVisualizable {
 	private String isbn;
 	private boolean readed;
 	private int timeReaded;
+	private ArrayList<Page> pages;
 
-	public Book(String title, Date edititionDate, String editorial, String[] authors) {
+	public Book(String title, Date edititionDate, String editorial, String[] authors, ArrayList<Page> pages) {
 		super(title, edititionDate, editorial);
 		setAuthors(authors);
+		this.pages = pages;
 	}
 
 	public int getId() {
@@ -28,7 +32,7 @@ public class Book extends Publication implements IVisualizable {
 
 	public String isReaded() {
 		String leido = "";
-		if(readed == true) {
+		if(readed) {
 			leido = "Sí";
 		}else {
 			leido = "No";
@@ -52,10 +56,17 @@ public class Book extends Publication implements IVisualizable {
 	public void setTimeReaded(int timeReaded) {
 		this.timeReaded = timeReaded;
 	}
-	
+
+	public ArrayList<Page> getPages() {
+		return pages;
+	}
+
+	public void setPages(ArrayList<Page> pages) {
+		this.pages = pages;
+	}
+
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		String detailBook = "\n :: BOOK ::" + 
 							"\n Title: " + getTitle() +
 							"\n Editorial: " + getEditorial() + 
@@ -88,8 +99,15 @@ public class Book extends Publication implements IVisualizable {
 			authors[i] = "author "+i;
 		}
 
+		ArrayList<Page> pages = new ArrayList<>();
+		int page = 0;
+		for	(int i = 0; i < 3; i++) {
+			page = i++;
+			pages.add(new Book.Page(page, "Content page:" + page));
+		}
+
 		for (int i = 1; i <= 5; i++) {
-			books.add(new Book("Book " + i, new Date(), "editorial " + i, authors));
+			books.add(new Book("Book " + i, new Date(), "editorial " + i, authors, pages));
 		}
 		
 		return books;
@@ -99,13 +117,68 @@ public class Book extends Publication implements IVisualizable {
 		setReaded(true);
 		Date dateI = startToSee(new Date());
 
-		for (int i = 0; i < 100000; i++) {
+		int i = 0;
+		do {
 			System.out.println("..........");
-		}
+			System.out.println("Page " + getPages().get(i).getNumber());
+			System.out.println(getPages().get(i).getContent());
+			System.out.println("..........");
+
+			if (i != 0) {
+				System.out.println("1. Regresar página");
+			}
+			System.out.println("2. Siguiente página");
+			System.out.println("0. Cerrar libro");
+			System.out.println();
+
+			int response = AmazonUtil.validateUserResponseMenu(0, 2);
+			if (response == 2) {
+				i++;
+			} else if (response == 1) {
+				i--;
+			} else if (response == 0) {
+				break;
+			}
+		} while (i < getPages().size());
 
 		stopToSee(dateI, new Date());
 		System.out.println();
 		System.out.println("Leíste: " + toString());
 		System.out.println("Por: " + getTimeReaded() + " milisegundos");
+	}
+
+	public static class Page {
+		private int id;
+		private int number;
+		private String content;
+
+		public int getId() {
+			return id;
+		}
+
+		public void setId(int id) {
+			this.id = id;
+		}
+
+		public int getNumber() {
+			return number;
+		}
+
+		public void setNumber(int number) {
+			this.number = number;
+		}
+
+		public String getContent() {
+			return content;
+		}
+
+		public void setContent(String content) {
+			this.content = content;
+		}
+
+		public Page(int number, String content) {
+			this.number = number;
+			this.content = content;
+		}
 	}
 }
