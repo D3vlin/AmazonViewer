@@ -8,29 +8,23 @@ public class Book extends Publication implements IVisualizable {
 	private String isbn;
 	private boolean readed;
 	private int timeReaded;
-	
-	
+
 	public Book(String title, Date edititionDate, String editorial, String[] authors) {
 		super(title, edititionDate, editorial);
-		// TODO Auto-generated constructor stub
 		setAuthors(authors);
 	}
-
 
 	public int getId() {
 		return id;
 	}
 
-
 	public String getIsbn() {
 		return isbn;
 	}
 
-
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
-
 
 	public String isReaded() {
 		String leido = "";
@@ -43,7 +37,6 @@ public class Book extends Publication implements IVisualizable {
 		return leido;
 	}
 
-
 	public void setReaded(boolean readed) {
 		this.readed = readed;
 	}
@@ -52,11 +45,9 @@ public class Book extends Publication implements IVisualizable {
 		return readed;
 	}
 
-
 	public int getTimeReaded() {
 		return timeReaded;
 	}
-
 
 	public void setTimeReaded(int timeReaded) {
 		this.timeReaded = timeReaded;
@@ -76,36 +67,45 @@ public class Book extends Publication implements IVisualizable {
 		return  detailBook;
 	}
 
-
 	@Override
 	public Date startToSee(Date dateI) {
-		// TODO Auto-generated method stub
 		return dateI;
 	}
 
-
 	@Override
 	public void stopToSee(Date dateI, Date dateF) {
-		// TODO Auto-generated method stub
 		if (dateF.getTime() > dateI.getTime()) {
 			setTimeReaded((int)(dateF.getTime() - dateI.getTime()));
 		}else {
 			setTimeReaded(0);
 		}
 	}
-	
-	
+
 	public static ArrayList<Book> makeBookList() {
 		ArrayList<Book> books = new ArrayList();
 		String[] authors = new String[3];
 		for (int i = 0; i < 3; i++) {
 			authors[i] = "author "+i;
 		}
+
 		for (int i = 1; i <= 5; i++) {
 			books.add(new Book("Book " + i, new Date(), "editorial " + i, authors));
 		}
 		
 		return books;
 	}
-	
+
+	public void view() {
+		setReaded(true);
+		Date dateI = startToSee(new Date());
+
+		for (int i = 0; i < 100000; i++) {
+			System.out.println("..........");
+		}
+
+		stopToSee(dateI, new Date());
+		System.out.println();
+		System.out.println("Leíste: " + toString());
+		System.out.println("Por: " + getTimeReaded() + " milisegundos");
+	}
 }
