@@ -21,7 +21,7 @@ import java.util.Date;
  */
 public class Main {
     static ArrayList<Book> books= Book.makeBookList();
-    static ArrayList<Movie> movies = Movie.makeMoviesList();
+    static ArrayList<Movie> movies = new ArrayList<>();
     static ArrayList<Serie> series = Serie.makeSeriesList();
 
     public static void main(String[] args) {
@@ -80,6 +80,7 @@ public class Main {
     }
 
     public static void showMovies() {
+        movies = Movie.makeMoviesList();
         int exit = 1;
         do {
             System.out.println();
